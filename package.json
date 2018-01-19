@@ -1,0 +1,43 @@
+{
+  "name": "react-builder",
+  "version": "1.0.0",
+  "description": "react-build use webpack",
+  "main": "index.js",
+  "scripts": {
+    "clear": "rimraf build",
+    "build": "npm run clear && webpack --config config/webpack.config.js",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TYRMars/React-Builder.git"
+  },
+  "author": "Jonathan Zhang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TYRMars/React-Builder/issues"
+  },
+  "homepage": "https://github.com/TYRMars/React-Builder#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2015-loose": "^8.0.0",
+    "babel-preset-react": "^6.24.1",
+    "cross-env": "^5.1.3",
+    "css-loader": "^0.28.9",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^2.30.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "react-hot-loader": "^4.0.0-beta.15",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.0"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  }
+}
