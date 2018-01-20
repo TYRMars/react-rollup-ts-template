@@ -1,17 +1,17 @@
-const path = require('path');
-const webpack = require('webpack');
-const HTMLPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const path = require('path')
+const webpack = require('webpack')
+const HTMLPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const OpenBrowserPlugin = require('open-browser-webpack-plugin')
 
-//判断是否是开发环境
+// 判断是否是开发环境
 const isDev = process.env.NODE_ENV === 'development'
 
-//less和css的打包发布
+// less和css的打包发布
 const extractcss = new ExtractTextPlugin({
-  filename: "[name].[hash].css",
-  disable: process.env.NODE_ENV === "development"
-});
+  filename: '[name].[hash].css',
+  disable: process.env.NODE_ENV === 'development'
+})
 
 const renderhtmltemplate = new HTMLPlugin({
   template: path.join(__dirname, '../client/index.html')
@@ -23,7 +23,7 @@ const config = {
   },
   output: {
     filename: '[name].[hash].js',
-    path: path.join(__dirname, '../build'), //输出目录
+    path: path.join(__dirname, '../build'), // 输出目录
     publicPath: '/public/'
   },
   module: {
@@ -42,13 +42,13 @@ const config = {
         use: extractcss.extract({
           use: [
             {
-              loader: "css-loader"
+              loader: 'css-loader'
             }, {
-              loader: "less-loader"
+              loader: 'less-loader'
             }
           ],
           // use style-loader in development
-          fallback: "style-loader"
+          fallback: 'style-loader'
         })
       }
     ]
@@ -67,7 +67,7 @@ if (isDev) {
     host: '0.0.0.0',
     port: '3300',
     contentBase: path.join(__dirname, '../dev'),
-    hot: true, //热加载
+    hot: true, // 热加载
     overlay: {
       errors: true
     },
