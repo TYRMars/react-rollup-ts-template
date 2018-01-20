@@ -1,13 +1,14 @@
-const path = require('path')
-const webpack = require('webpack')
-const HTMLPlugin = require('html-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HTMLPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 //判断是否是开发环境
 const isDev = process.env.NODE_ENV === 'development'
 
 //less和css的打包发布
-const extractLess = new ExtractTextPlugin({
+const extractcss = new ExtractTextPlugin({
     filename: "[name].[hash].css",
     disable: process.env.NODE_ENV === "development"
 });
@@ -18,12 +19,12 @@ const renderhtmltemplate = new HTMLPlugin({
 
 const config = {
     entry:{
-        index:path.join(__dirname,'../src/index.js')
+        main:path.join(__dirname,'../src/index.js')
     },
     output:{
         filename: '[name].[hash].js',
         path: path.join(__dirname,'../build'),//输出目录
-        publicPath: '/public'
+        publicPath: '/public/'
     },
     module: {
         rules:[
@@ -36,19 +37,21 @@ const config = {
             },
             {
                 test: /\.(css|less)$/,
-                use: [{
-                    loader: "style-loader"
-                }, {
-                    loader: "css-loader"
-                }, {
-                    loader: "less-loader"
-                }]
+                use: extractcss.extract({
+                    use: [{
+                        loader: "css-loader"
+                    }, {
+                        loader: "less-loader"
+                    }],
+                    // use style-loader in development
+                    fallback: "style-loader"
+                })    
             }
         ]
     },
     plugins: [
         renderhtmltemplate,
-        extractLess
+        extractcss
     ]
 }
 
@@ -67,12 +70,15 @@ if(isDev){
         overlay:{
             errors:true
         },
-        publicPath: '/public',
+        publicPath: '/public/',
         historyApiFallback:{
             index:'/public/index.html'
         }
     }
-    config.plugins.push(new webpack.HotModuleReplacementPlugin())
+    config.plugins.push(
+        new webpack.HotModuleReplacementPlugin(),
+        new OpenBrowserPlugin({ url: 'http://localhost:3300' })
+    )
 }
 
 module.exports = config
