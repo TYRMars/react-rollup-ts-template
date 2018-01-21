@@ -4,10 +4,13 @@ import './static/less/main.less'
 class App extends React.Component { // eslint-disable-line
   render() {
     return (<div className="react-main">
-      <h1>this is React-Builder</h1>
-      <p className="react-p">you can use less</p>
-      <p className="react-redux">you can use redux</p>
-      <p className="react-redux">HMR loading</p>
+      <h1>This is React-Builder</h1>
+      <p className="react-p">Support less</p>
+      <p className="react-h">Support eslint</p>
+      <p className="react-h">HMR loading</p>
+      <p className="react-h">
+        If you like this you can star and fork <a href="https://github.com/TYRMars/React-Builder">React-Builder</a>
+      </p>
     </div>) // eslint-disable-line
   }
 }
