@@ -48,14 +48,12 @@
   },
   "include": [
     "src/**/*",
-    "test/index.tests.ts"
   ],
   "exclude": [
     "coverage",
     "config",
+    "public",
     "dist",
     "node_modules/**",
-    "**/*.test.js",
-    "**/*.test.ts",
   ]
 }
