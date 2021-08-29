@@ -1,6 +1,6 @@
 # react-rollup-ts-template
 
-React TypeScipr基本开发环境，rollup进行打包。
+React TypeScript基本开发环境，rollup进行打包。
 
 ## 使用工具
 
